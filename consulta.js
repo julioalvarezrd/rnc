@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Realizar la consulta al archivo DGI.txt
-    fetch('DGI.txt')
+    fetch('DGI.CSV')
         .then(response => response.text())
         .then(data => {
             // Procesar los datos del archivo
@@ -11,5 +11,5 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log(`RNC: ${rnc}, Nombre: ${nombre}`);
             });
         })
-        .catch(error => console.error('Error al cargar el archivo DGI.txt:', error));
+        .catch(error => console.error('Error al cargar el archivo DGI.CSV:', error));
 });
