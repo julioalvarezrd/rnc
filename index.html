@@ -34,7 +34,7 @@
             var inputRNC = document.getElementById("rncInput").value;
 
             // Realiza la consulta al archivo DGI.txt (puedes ajustar la ruta según tu estructura de archivos)
-            fetch('DGI.CSV')
+            fetch('https://raw.githubusercontent.com/julioalvarezrd/rnc/main/DGI.CSV')
                 .then(response => response.text())
                 .then(data => {
                     var lineas = data.split('\n');

@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Realizar la consulta al archivo DGI.txt
-    fetch('DGI.CSV')
+    fetch('https://raw.githubusercontent.com/julioalvarezrd/rnc/main/DGI.CSV')
         .then(response => response.text())
         .then(data => {
             // Procesar los datos del archivo
