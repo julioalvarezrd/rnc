@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de RNC</title>
+    <!-- Agrega los enlaces a Bootstrap CSS y JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <h1 class="mb-4">Consulta de RNC</h1>
+
+        <div class="form-group">
+            <label for="rncInput">Ingrese el RNC:</label>
+            <input type="text" class="form-control" id="rncInput" placeholder="Escribe el RNC">
+        </div>
+
+        <button type="button" class="btn btn-primary" onclick="consultarRNC()">Consultar</button>
+
+        <div class="mt-3" id="resultado"></div>
+    </div>
+
+    <!-- Agrega los enlaces a Bootstrap JS y Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script>
+        function consultarRNC() {
+            var inputRNC = document.getElementById("rncInput").value;
+
+            // Realiza la consulta al archivo DGI.txt (puedes ajustar la ruta según tu estructura de archivos)
+            fetch('DGI.txt')
+                .then(response => response.text())
+                .then(data => {
+                    var lineas = data.split('\n');
+                    var resultado = "No se encontró el RNC.";
+
+                    // Itera sobre cada línea del archivo
+                    for (var i = 0; i < lineas.length; i++) {
+                        var partes = lineas[i].split('|');
+
+                        // Verifica si el RNC ingresado coincide con el RNC en la línea actual
+                        if (partes[0].trim() === inputRNC.trim()) {
+                            resultado = "Nombre/Razón Social: " + partes[1].trim();
+                            break; // Termina la búsqueda si encuentra una coincidencia
+                        }
+                    }
+
+                    // Muestra el resultado en la página
+                    document.getElementById("resultado").innerHTML = resultado;
+                })
+                .catch(error => console.error('Error al leer el archivo:', error));
+        }
+    </script>
+
+</body>
+
+</html>
